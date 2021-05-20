@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "86440362154",
+    "project_id": "the-local-shop-final",
+    "storage_bucket": "the-local-shop-final.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:86440362154:android:eb50dc49a4f998fd9610d3",
+        "android_client_info": {
+          "package_name": "com.example.thelocalshopfinal"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "86440362154-pcpl6mebah22o28hlm23dc1p1givn759.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAq1juWmLCX2p5mRpR9dcBo2XXxpGLLyrU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "86440362154-pcpl6mebah22o28hlm23dc1p1givn759.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
