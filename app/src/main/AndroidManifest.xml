@@ -9,7 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TheLocalShopFinal">
-        <activity android:name=".Register_Customer"></activity>
+        <activity android:name=".MapActivity"
+            android:parentActivityName=".MainActivity"
+            ></activity>
+        <activity android:name=".Register_Customer" />
         <activity android:name=".Register_Store" />
         <activity android:name=".Login" />
         <activity android:name=".MainActivity" />
