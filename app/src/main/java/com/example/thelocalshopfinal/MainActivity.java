@@ -37,12 +37,14 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.nav_map:
                     startActivity(new Intent(MainActivity.this, MapActivity.class));
                     break;
+                 case R.id.nav_profile:
+                     startActivity(new Intent(MainActivity.this, UserProfile.class));
+                     break;
                 default:
                     break;
                 // case R.id.nav_cart:
                 //     break;
-                // case R.id.nav_profile:
-                //     break;
+
             }
             return true;
         }
