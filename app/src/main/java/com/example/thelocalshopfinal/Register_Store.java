@@ -8,6 +8,9 @@ package com.example.thelocalshopfinal;
         import android.widget.Button;
         import android.widget.EditText;
         import android.widget.ProgressBar;
+        import android.widget.Spinner;
+        import android.widget.AdapterView;
+        import android.widget.ArrayAdapter;
         import android.widget.TextView;
         import android.widget.Toast;
 
@@ -27,7 +30,7 @@ package com.example.thelocalshopfinal;
         import java.util.HashMap;
         import java.util.Map;
 
-public class Register_Store extends AppCompatActivity {
+public class Register_Store extends AppCompatActivity  implements AdapterView.OnItemSelectedListener{
     EditText mFullName, mEmail, mPassword, mPhone;
     Button mRegisterBtn;
     TextView mLoginBtn;
@@ -35,10 +38,12 @@ public class Register_Store extends AppCompatActivity {
     ProgressBar progressBar;
     FirebaseFirestore fstore;
     String userID;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register__store);
+
 
         mFullName = findViewById(R.id.name);
         mEmail = findViewById(R.id.emailAddress);
@@ -47,12 +52,18 @@ public class Register_Store extends AppCompatActivity {
         mRegisterBtn = findViewById(R.id.registerButton);
         mLoginBtn = findViewById(R.id.alreadyRegisteredLogin);
 
-        fAuth= FirebaseAuth.getInstance();
+        Spinner spinner = findViewById(R.id.spinner1);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.numbers,  android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+        spinner.setOnItemSelectedListener(this);
+
+        fAuth = FirebaseAuth.getInstance();
         fstore = FirebaseFirestore.getInstance();
         progressBar = findViewById(R.id.progressBar);
 
-        if(fAuth.getCurrentUser() !=null){
-            startActivity(new Intent(getApplicationContext(),MainActivity.class));
+        if (fAuth.getCurrentUser() != null) {
+            startActivity(new Intent(getApplicationContext(), MainActivity.class));
             finish();
         }
 
@@ -64,16 +75,16 @@ public class Register_Store extends AppCompatActivity {
                 String fullName = mFullName.getText().toString();
                 String phone = mPhone.getText().toString();
 
-                if(TextUtils.isEmpty(email)){
+                if (TextUtils.isEmpty(email)) {
                     mEmail.setError("EMAIL IS REQUIRED.");
                     return;
                 }
 
-                if(TextUtils.isEmpty(password)){
+                if (TextUtils.isEmpty(password)) {
                     mPassword.setError("PASSWORD IS REQUIRED.");
                 }
 
-                if(password.length()<6){
+                if (password.length() < 6) {
                     mPassword.setError("PASSWORD MUST BE 6 CHARACTERS ATLEAST.");
                 }
 
@@ -81,26 +92,26 @@ public class Register_Store extends AppCompatActivity {
 
                 //register the user in firebase
 
-                fAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                fAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        if(task.isSuccessful()){
+                        if (task.isSuccessful()) {
                             Toast.makeText(Register_Store.this, "User Created", Toast.LENGTH_SHORT).show();
                             userID = fAuth.getCurrentUser().getUid();
                             DocumentReference documentReference = fstore.collection("store").document(userID);
-                            Map<String,Object> user = new HashMap<>();
-                            user.put("StoreName",fullName);
-                            user.put("email",email);
-                            user.put("phone",phone);
+                            Map<String, Object> user = new HashMap<>();
+                            user.put("StoreName", fullName);
+                            user.put("email", email);
+                            user.put("phone", phone);
                             documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void aVoid) {
 //                                    Log.d("TAG","onSuccess: user profile is created for "+ userID);
                                 }
                             });
-                            startActivity(new Intent(getApplicationContext(),MainActivity.class));
-                        }else{
-                            Toast.makeText(Register_Store.this,"ERROR! "+ task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                        } else {
+                            Toast.makeText(Register_Store.this, "ERROR! " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
@@ -110,8 +121,19 @@ public class Register_Store extends AppCompatActivity {
         mLoginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(),Login.class));
+                startActivity(new Intent(getApplicationContext(), Login.class));
             }
         });
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        String text= parent.getItemAtPosition(position).toString();
+        Toast.makeText(parent.getContext(), text, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
     }
 }

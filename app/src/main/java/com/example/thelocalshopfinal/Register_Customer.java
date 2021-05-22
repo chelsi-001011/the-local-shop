@@ -28,7 +28,7 @@ package com.example.thelocalshopfinal;
         import java.util.Map;
 
 public class Register_Customer extends AppCompatActivity {
-    EditText mFullName, mEmail, mPassword, mPhone;
+    EditText mFullName, mEmail, mPassword, mPhone, mAddress;
     Button mRegisterBtn;
     TextView mLoginBtn;
     FirebaseAuth fAuth;
@@ -44,6 +44,7 @@ public class Register_Customer extends AppCompatActivity {
         mEmail = findViewById(R.id.emailAddress);
         mPassword = findViewById(R.id.password);
         mPhone = findViewById(R.id.phoneNumber);
+        mAddress = findViewById(R.id.address);
         mRegisterBtn = findViewById(R.id.registerButton);
         mLoginBtn = findViewById(R.id.alreadyRegisteredLogin);
 
@@ -63,6 +64,7 @@ public class Register_Customer extends AppCompatActivity {
                 String password = mPassword.getText().toString().trim();
                 String fullName = mFullName.getText().toString();
                 String phone = mPhone.getText().toString();
+                String address = mAddress.getText().toString().trim();
 
                 if(TextUtils.isEmpty(email)){
                     mEmail.setError("EMAIL IS REQUIRED.");
@@ -75,6 +77,10 @@ public class Register_Customer extends AppCompatActivity {
 
                 if(password.length()<6){
                     mPassword.setError("PASSWORD MUST BE 6 CHARACTERS ATLEAST.");
+                }
+
+                if(TextUtils.isEmpty(address)){
+                    mAddress.setError(" ADDRESS IS REQUIRED.");
                 }
 
                 progressBar.setVisibility(View.VISIBLE);
@@ -92,6 +98,7 @@ public class Register_Customer extends AppCompatActivity {
                             user.put("fName",fullName);
                             user.put("email",email);
                             user.put("phone",phone);
+                            user.put("address",address);
                             documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void aVoid) {
