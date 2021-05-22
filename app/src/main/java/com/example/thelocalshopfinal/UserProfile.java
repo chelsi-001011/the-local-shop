@@ -34,6 +34,7 @@ public class UserProfile extends AppCompatActivity {
     TextView addressTV;
     String Name="",pass,contact="",address="",email,currentuser;
     FirebaseAuth mAuth;
+    boolean isStore=false;
     FirebaseFirestore db=FirebaseFirestore.getInstance();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,9 +57,36 @@ public class UserProfile extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 if(task.isSuccessful()){
-                    nameTV.setText(task.getResult().getString("fName"));
-                    emailTV.setText(task.getResult().getString("email"));
-                    contactTV.setText(task.getResult().getString("phone"));
+                    if(task.getResult().exists()){
+                        nameTV.setText(task.getResult().getString("fName"));
+                        emailTV.setText(task.getResult().getString("email"));
+                        contactTV.setText(task.getResult().getString("phone"));
+                        isStore=false;
+                    }
+                    else{
+                        db.collection("store").document(user_id).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                            @Override
+                            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                if(task.isSuccessful()){
+                                    if(task.getResult().exists()){
+                                        nameTV.setText(task.getResult().getString("StoreName"));
+                                        emailTV.setText(task.getResult().getString("email"));
+                                        contactTV.setText(task.getResult().getString("phone"));
+                                        isStore=true;
+                                    }
+                                    else{
+
+                                    }
+
+                                    //  addressTV.setText(task.getResult().getString(""));
+                                }
+                                else{
+                                    Toast.makeText(UserProfile.this, "Error", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
+                    }
+
                   //  addressTV.setText(task.getResult().getString(""));
                 }
                 else{
@@ -82,6 +110,7 @@ public class UserProfile extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent i =new Intent(UserProfile.this,EditDetails.class);
+                i.putExtra("isStore",isStore);
                 startActivity(i);
             }
         });

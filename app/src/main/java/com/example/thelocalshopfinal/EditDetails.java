@@ -27,6 +27,7 @@ public class EditDetails extends AppCompatActivity {
     Button Modify;
     String username,Uid;
     FirebaseAuth mAuth;
+    boolean isStore;
     FirebaseFirestore db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,22 +38,17 @@ public class EditDetails extends AppCompatActivity {
         AddTF=findViewById(R.id.ChangeAddress);
         Modify=findViewById(R.id.ChangeButton);
         mAuth=FirebaseAuth.getInstance();
+        Intent intent=getIntent();
+        isStore=intent.getBooleanExtra("isStore",false);
         FirebaseUser user=mAuth.getCurrentUser();
         db=FirebaseFirestore.getInstance();
         String user_id=user.getUid();
-        db.collection("customer").document(user_id).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if(task.isSuccessful()){
-                    NameTF.setText(task.getResult().getString("fName"));
-                    ContTF.setText(task.getResult().getString("phone"));
-                    //  addressTV.setText(task.getResult().getString(""));
-                }
-                else{
-                    Toast.makeText(EditDetails.this, "Error", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
+        if(isStore){
+            show_Details_Store(user_id);
+        }
+        else{
+            show_Details_Customer(user_id);
+        }
         Modify.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -71,8 +67,15 @@ public class EditDetails extends AppCompatActivity {
                             final ProgressDialog progress = new ProgressDialog(EditDetails.this);
                             progress.setMessage("Editing Details...");
                             progress.show();
-                            db.collection("customer").document(user_id).update("fName",newName);
-                            db.collection("customer").document(user_id).update("phone",newContact);
+                            if(isStore){
+                                db.collection("store").document(user_id).update("StoreName",newName);
+                                db.collection("store").document(user_id).update("phone",newContact);
+
+                            }
+                            else{
+                                db.collection("customer").document(user_id).update("fName",newName);
+                                db.collection("customer").document(user_id).update("phone",newContact);
+                            }
                             progress.dismiss();
                             Toast.makeText(EditDetails.this, "Updated Successfully", Toast.LENGTH_SHORT).show();
                         }
@@ -86,6 +89,40 @@ public class EditDetails extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    void show_Details_Customer(String user_id){
+        db.collection("customer").document(user_id).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if(task.isSuccessful()){
+                    NameTF.setText(task.getResult().getString("fName"));
+                    ContTF.setText(task.getResult().getString("phone"));
+                    //  addressTV.setText(task.getResult().getString(""));
+                }
+                else{
+                    Toast.makeText(EditDetails.this, "Error", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+    }
+
+    void show_Details_Store(String user_id){
+        db.collection("store").document(user_id).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if(task.isSuccessful()){
+                    NameTF.setText(task.getResult().getString("StoreName"));
+                    ContTF.setText(task.getResult().getString("phone"));
+                    //  addressTV.setText(task.getResult().getString(""));
+                }
+                else{
+                    Toast.makeText(EditDetails.this, "Error", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
     }
 
     public boolean isValidContact(String s){
