@@ -11,6 +11,7 @@ package com.example.thelocalshopfinal;
         import android.widget.Spinner;
         import android.widget.AdapterView;
         import android.widget.ArrayAdapter;
+        import android.widget.AdapterView.OnItemSelectedListener;
         import android.widget.TextView;
         import android.widget.Toast;
 
@@ -30,7 +31,7 @@ package com.example.thelocalshopfinal;
         import java.util.HashMap;
         import java.util.Map;
 
-public class Register_Store extends AppCompatActivity  implements AdapterView.OnItemSelectedListener{
+public class Register_Store extends AppCompatActivity {
     EditText mFullName, mEmail, mPassword, mPhone;
     Button mRegisterBtn;
     TextView mLoginBtn;
@@ -38,6 +39,13 @@ public class Register_Store extends AppCompatActivity  implements AdapterView.On
     ProgressBar progressBar;
     FirebaseFirestore fstore;
     String userID;
+    Spinner spinner;
+    String[] spinnerValue = {
+            "Grocery",
+            "Medical",
+            "Services",
+            "Food"
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,11 +60,38 @@ public class Register_Store extends AppCompatActivity  implements AdapterView.On
         mRegisterBtn = findViewById(R.id.registerButton);
         mLoginBtn = findViewById(R.id.alreadyRegisteredLogin);
 
-        Spinner spinner = findViewById(R.id.spinner1);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.numbers,  android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner =(Spinner)findViewById(R.id.spinner1);
+        spinnerAdapter adapter = new spinnerAdapter(Register_Store.this , android.R.layout.simple_list_item_1);
+        adapter.addAll(spinnerValue);
+        adapter.add("Choose Category");
         spinner.setAdapter(adapter);
-        spinner.setOnItemSelectedListener(this);
+        spinner.setSelection(adapter.getCount());
+
+        spinner.setOnItemSelectedListener(new OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view,
+                                       int position, long id) {
+                // TODO Auto-generated method stub
+
+                if(spinner.getSelectedItem() == "Choose Category")
+                {
+
+                    //Do nothing.
+                }
+                else{
+
+                    Toast.makeText(Register_Store.this, spinner.getSelectedItem().toString(), Toast.LENGTH_LONG).show();
+
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                // TODO Auto-generated method stub
+
+            }
+        });
 
         fAuth = FirebaseAuth.getInstance();
         fstore = FirebaseFirestore.getInstance();
@@ -124,16 +159,5 @@ public class Register_Store extends AppCompatActivity  implements AdapterView.On
                 startActivity(new Intent(getApplicationContext(), Login.class));
             }
         });
-    }
-
-    @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        String text= parent.getItemAtPosition(position).toString();
-        Toast.makeText(parent.getContext(), text, Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    public void onNothingSelected(AdapterView<?> parent) {
-
     }
 }
