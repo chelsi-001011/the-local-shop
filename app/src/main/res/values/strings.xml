@@ -16,4 +16,11 @@
         <item>Degrees</item>
         <item>Radians</item>
     </string-array>
+
+    <string-array name="numbers">
+        <item>Grocery</item>
+        <item>Medical</item>
+        <item>Services</item>
+        <item>Food</item>
+    </string-array>
 </resources>
