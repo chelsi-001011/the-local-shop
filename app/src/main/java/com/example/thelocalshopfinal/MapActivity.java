@@ -1,13 +1,22 @@
 package com.example.thelocalshopfinal;
 
 import android.annotation.SuppressLint;
+import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.location.Location;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.mapbox.android.core.location.LocationEngine;
 import com.mapbox.android.core.location.LocationEngineCallback;
 import com.mapbox.android.core.location.LocationEngineProvider;
@@ -15,6 +24,9 @@ import com.mapbox.android.core.location.LocationEngineRequest;
 import com.mapbox.android.core.location.LocationEngineResult;
 import com.mapbox.android.core.permissions.PermissionsListener;
 import com.mapbox.android.core.permissions.PermissionsManager;
+import com.mapbox.geojson.Feature;
+import com.mapbox.geojson.FeatureCollection;
+import com.mapbox.geojson.Point;
 import com.mapbox.mapboxsdk.Mapbox;
 import com.mapbox.mapboxsdk.location.LocationComponent;
 import com.mapbox.mapboxsdk.location.LocationComponentActivationOptions;
@@ -25,9 +37,19 @@ import com.mapbox.mapboxsdk.maps.MapView;
 import com.mapbox.mapboxsdk.maps.MapboxMap;
 import com.mapbox.mapboxsdk.maps.OnMapReadyCallback;
 import com.mapbox.mapboxsdk.maps.Style;
+import com.mapbox.mapboxsdk.style.expressions.Expression;
+import com.mapbox.mapboxsdk.style.layers.SymbolLayer;
+import com.mapbox.mapboxsdk.style.sources.GeoJsonSource;
 
 import java.lang.ref.WeakReference;
+import java.util.ArrayList;
 import java.util.List;
+
+import static com.mapbox.mapboxsdk.style.expressions.Expression.get;
+import static com.mapbox.mapboxsdk.style.layers.PropertyFactory.iconAllowOverlap;
+import static com.mapbox.mapboxsdk.style.layers.PropertyFactory.iconIgnorePlacement;
+import static com.mapbox.mapboxsdk.style.layers.PropertyFactory.iconImage;
+import static com.mapbox.mapboxsdk.style.layers.PropertyFactory.textField;
 
 /**
  * Use the Mapbox Core Library to receive updates when the device changes location.
@@ -36,6 +58,9 @@ public class MapActivity extends AppCompatActivity implements
         OnMapReadyCallback, PermissionsListener {
     private static final long DEFAULT_INTERVAL_IN_MILLISECONDS = 1000L;
     private static final long DEFAULT_MAX_WAIT_TIME = DEFAULT_INTERVAL_IN_MILLISECONDS * 5;
+    private static final String SOURCE_ID = "SOURCE_ID";
+    private static final String ICON_ID = "ICON_ID";
+    private static final String LAYER_ID = "LAYER_ID";
     private MapboxMap mapboxMap;
     private MapView mapView;
     private PermissionsManager permissionsManager;
@@ -63,12 +88,43 @@ public class MapActivity extends AppCompatActivity implements
     public void onMapReady(@NonNull final MapboxMap mapboxMap) {
         this.mapboxMap = mapboxMap;
 
-        mapboxMap.setStyle(Style.MAPBOX_STREETS,
-                new Style.OnStyleLoaded() {
-                    @Override public void onStyleLoaded(@NonNull Style style) {
-                        enableLocationComponent(style);
+        List<Feature> symbolLayerIconFeatureList = new ArrayList<>();
+
+        FirebaseFirestore.getInstance().collection("store").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if(task.isSuccessful()){
+                    for (QueryDocumentSnapshot document : task.getResult()) {
+                        Feature storeloc = Feature.fromGeometry(Point.fromLngLat(Double.parseDouble(document.getData().get("longitude").toString()),Double.parseDouble(document.getData().get("latitude").toString())));
+                        storeloc.addStringProperty("STORE_NAME", document.getData().get("StoreName").toString());
+                        storeloc.addStringProperty("STORE_CATEGORY", document.getData().get("category").toString());
+                        symbolLayerIconFeatureList.add(storeloc);
+//                        Log.d("TAG", document.getId() + " => " + document.getData().get("longitude"));
                     }
-                });
+                } else {
+                    Log.d("TAG", "Error getting documents: ", task.getException());
+                }
+                Log.d("list", symbolLayerIconFeatureList.toString());
+                mapboxMap.setStyle(new Style.Builder().fromUri("mapbox://styles/mapbox/cjf4m44iw0uza2spb3q0a7s41")
+                                .withImage(ICON_ID, BitmapFactory.decodeResource(
+                                        MapActivity.this.getResources(), R.drawable.mapbox_marker_icon_default))
+                                .withSource(new GeoJsonSource(SOURCE_ID,
+                                        FeatureCollection.fromFeatures(symbolLayerIconFeatureList)))
+                                .withLayer(new SymbolLayer(LAYER_ID, SOURCE_ID)
+                                        .withProperties(
+                                                iconImage(ICON_ID),
+                                                iconAllowOverlap(true),
+                                                iconIgnorePlacement(true),
+                                                textField(Expression.concat(get("STORE_NAME"), Expression.literal(" - "), get("STORE_CATEGORY")))
+                                        )
+                                ),
+                        new Style.OnStyleLoaded() {
+                            @Override public void onStyleLoaded(@NonNull Style style) {
+                                enableLocationComponent(style);
+                            }
+                        });
+            }
+        });
     }
 
     /**
@@ -79,12 +135,17 @@ public class MapActivity extends AppCompatActivity implements
         // Check if permissions are enabled and if not request
         if (PermissionsManager.areLocationPermissionsGranted(this)) {
 
+            LocationComponentOptions customLocationComponentOptions = LocationComponentOptions.builder(this)
+                    .elevation(5)
+                    .accuracyAlpha(.6f)
+                    .pulseEnabled(true)
+                    .pulseMaxRadius(100f)
+                    .accuracyColor(Color.RED)
+                    .build();
+
             // Get an instance of the component
             LocationComponent locationComponent = mapboxMap.getLocationComponent();
 
-            LocationComponentOptions customLocationComponentOptions = LocationComponentOptions.builder(this)
-                    .pulseEnabled(true)
-                    .build();
             // Set the LocationComponent activation options
             LocationComponentActivationOptions locationComponentActivationOptions =
                     LocationComponentActivationOptions.builder(this, loadedMapStyle)
@@ -179,7 +240,7 @@ public class MapActivity extends AppCompatActivity implements
                 }
 
                 // Create a Toast which displays the new location's coordinates
-                Toast.makeText(activity,"YOUR LOCATION",Toast.LENGTH_SHORT).show();
+//                Toast.makeText(activity,"YOUR LOCATION",Toast.LENGTH_SHORT).show();
 //                Toast.makeText(activity, String.format(activity.getString(R.string.new_location),
 //                        result.getLastLocation().getLatitude(),
 //                        result.getLastLocation().getLongitude()),

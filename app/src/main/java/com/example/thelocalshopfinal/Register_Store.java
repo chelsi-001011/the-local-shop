@@ -1,6 +1,7 @@
 package com.example.thelocalshopfinal;
 
         import android.content.Intent;
+        import android.content.pm.PackageManager;
         import android.os.Bundle;
         import android.text.TextUtils;
         import android.util.Log;
@@ -17,6 +18,8 @@ package com.example.thelocalshopfinal;
 
         import androidx.annotation.NonNull;
         import androidx.appcompat.app.AppCompatActivity;
+        import androidx.core.app.ActivityCompat;
+        import androidx.core.content.ContextCompat;
 
         import com.google.android.gms.tasks.OnCompleteListener;
         import com.google.android.gms.tasks.OnSuccessListener;
@@ -32,6 +35,9 @@ package com.example.thelocalshopfinal;
         import java.util.Map;
 
 public class Register_Store extends AppCompatActivity {
+
+    private GpsTracker gpsTracker;
+    private TextView tvlatitude, tvlongitude;
     EditText mFullName, mEmail, mPassword, mPhone;
     Button mRegisterBtn;
     TextView mLoginBtn;
@@ -52,6 +58,13 @@ public class Register_Store extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register__store);
 
+        try {
+            if (ContextCompat.checkSelfPermission(getApplicationContext(), android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED ) {
+                ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, 101);
+            }
+        } catch (Exception e){
+            e.printStackTrace();
+        }
 
         mFullName = findViewById(R.id.name);
         mEmail = findViewById(R.id.emailAddress);
@@ -59,6 +72,8 @@ public class Register_Store extends AppCompatActivity {
         mPhone = findViewById(R.id.phoneNumber);
         mRegisterBtn = findViewById(R.id.registerButton);
         mLoginBtn = findViewById(R.id.alreadyRegisteredLogin);
+        tvlatitude = (TextView)findViewById(R.id.tvlatitude);
+        tvlongitude = (TextView)findViewById(R.id.tvlongitude);
 
         spinner =(Spinner)findViewById(R.id.spinner1);
         spinnerAdapter adapter = new spinnerAdapter(Register_Store.this , android.R.layout.simple_list_item_1);
@@ -105,10 +120,14 @@ public class Register_Store extends AppCompatActivity {
         mRegisterBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                getLocation(v);
                 String email = mEmail.getText().toString().trim();
                 String password = mPassword.getText().toString().trim();
                 String fullName = mFullName.getText().toString();
                 String phone = mPhone.getText().toString();
+                String spin = spinner.getSelectedItem().toString();
+                double lat = Double.parseDouble(tvlatitude.getText().toString());
+                double longi = Double.parseDouble(tvlongitude.getText().toString());
 
                 if (TextUtils.isEmpty(email)) {
                     mEmail.setError("EMAIL IS REQUIRED.");
@@ -138,6 +157,9 @@ public class Register_Store extends AppCompatActivity {
                             user.put("StoreName", fullName);
                             user.put("email", email);
                             user.put("phone", phone);
+                            user.put("category",spin);
+                            user.put("latitude",lat);
+                            user.put("longitude",longi);
                             documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void aVoid) {
@@ -159,5 +181,16 @@ public class Register_Store extends AppCompatActivity {
                 startActivity(new Intent(getApplicationContext(), Login.class));
             }
         });
+    }
+    public void getLocation(View view){
+        gpsTracker = new GpsTracker(Register_Store.this);
+        if(gpsTracker.canGetLocation()){
+            double latitude = gpsTracker.getLatitude();
+            double longitude = gpsTracker.getLongitude();
+            tvlatitude.setText(String.valueOf(latitude));
+            tvlongitude.setText(String.valueOf(longitude));
+        }else{
+            gpsTracker.showSettingsAlert();
+        }
     }
 }
