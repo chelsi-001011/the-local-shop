@@ -33,9 +33,11 @@ public class EditDetails extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_details);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         NameTF=findViewById(R.id.ChangeName);
         ContTF=findViewById(R.id.ChangeContact);
         AddTF=findViewById(R.id.ChangeAddress);
+        AddTF.setVisibility(View.GONE);
         Modify=findViewById(R.id.ChangeButton);
         mAuth=FirebaseAuth.getInstance();
         Intent intent=getIntent();
@@ -54,7 +56,6 @@ public class EditDetails extends AppCompatActivity {
             public void onClick(View view) {
                 final String newName = NameTF.getText().toString().trim();
                 final String newContact = ContTF.getText().toString().trim();
-                final String newAdd = AddTF.getText().toString().trim();
                 if(mAuth.getCurrentUser()==null) {
                     mAuth.signOut();
                     Intent in = new Intent(EditDetails.this, Login.class);
@@ -73,8 +74,11 @@ public class EditDetails extends AppCompatActivity {
 
                             }
                             else{
+                                AddTF.setVisibility(View.VISIBLE);
+                                final String newAdd = AddTF.getText().toString().trim();
                                 db.collection("customer").document(user_id).update("fName",newName);
                                 db.collection("customer").document(user_id).update("phone",newContact);
+                                db.collection("customer").document(user_id).update("address",newAdd);
                             }
                             progress.dismiss();
                             Toast.makeText(EditDetails.this, "Updated Successfully", Toast.LENGTH_SHORT).show();
@@ -98,7 +102,8 @@ public class EditDetails extends AppCompatActivity {
                 if(task.isSuccessful()){
                     NameTF.setText(task.getResult().getString("fName"));
                     ContTF.setText(task.getResult().getString("phone"));
-                    //  addressTV.setText(task.getResult().getString(""));
+                    AddTF.setVisibility(View.VISIBLE);
+                    AddTF.setText(task.getResult().getString("address"));
                 }
                 else{
                     Toast.makeText(EditDetails.this, "Error", Toast.LENGTH_SHORT).show();
@@ -115,7 +120,8 @@ public class EditDetails extends AppCompatActivity {
                 if(task.isSuccessful()){
                     NameTF.setText(task.getResult().getString("StoreName"));
                     ContTF.setText(task.getResult().getString("phone"));
-                    //  addressTV.setText(task.getResult().getString(""));
+                   // AddTF.setText(task.getResult().getString(""));
+                    AddTF.setVisibility(View.GONE);
                 }
                 else{
                     Toast.makeText(EditDetails.this, "Error", Toast.LENGTH_SHORT).show();

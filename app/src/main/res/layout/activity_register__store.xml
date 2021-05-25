@@ -7,6 +7,16 @@
     android:background="@drawable/wallpaper"
     tools:context=".Register">
 
+    <TextView
+        android:id="@+id/tvlatitude"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/tvlongitude"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/phoneNumber" />
+
     <EditText
         android:id="@+id/phoneNumber"
         android:layout_width="0dp"
@@ -82,9 +92,10 @@
         android:textSize="60sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.515"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.13999999" />
+        app:layout_constraintVertical_bias="0.065" />
 
     <TextView
         android:id="@+id/createNewStore"
@@ -119,14 +130,14 @@
         android:id="@+id/registerButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_margin="30dp"
         android:layout_marginTop="32dp"
         android:text="Register"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_margin="30dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/phoneNumber"
-        app:layout_constraintVertical_bias="0.19999999" />
+        app:layout_constraintVertical_bias="0.56" />
 
     <TextView
         android:id="@+id/alreadyRegisteredLogin"
@@ -150,6 +161,15 @@
         tools:layout_editor_absoluteX="238dp"
         tools:layout_editor_absoluteY="218dp"
         tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/tvlongitude"
+        android:layout_width="62dp"
+        android:layout_height="17dp"
+        android:layout_marginBottom="14dp"
+        app:layout_constraintBottom_toTopOf="@+id/registerButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
