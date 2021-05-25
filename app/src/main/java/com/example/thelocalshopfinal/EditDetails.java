@@ -33,6 +33,7 @@ public class EditDetails extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_details);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         NameTF=findViewById(R.id.ChangeName);
         ContTF=findViewById(R.id.ChangeContact);
         AddTF=findViewById(R.id.ChangeAddress);
