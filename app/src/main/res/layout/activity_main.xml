@@ -45,8 +45,10 @@
                         android:textSize="30sp"
                         android:padding="25dp"/>
                     <Button
+                        android:id="@+id/button1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:onClick="showMedicalStores"
                         android:text="Expand all"
                         android:textColor="@color/black"
                         android:background="#00000000"
@@ -73,8 +75,10 @@
                         android:textColor="@color/black"
                         android:padding="25dp"/>
                     <Button
+                        android:id="@+id/button2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:onClick="showGroceryStores"
                         android:text="Expand all"
                         android:textColor="@color/black"
                         android:background="#00000000"
@@ -101,8 +105,10 @@
                         android:textColor="@color/black"
                         android:padding="25dp"/>
                     <Button
+                        android:id="@+id/button3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:onClick="showFoodStores"
                         android:text="Expand all"
                         android:textColor="@color/black"
                         android:background="#00000000"
@@ -129,8 +135,10 @@
                         android:textColor="@color/black"
                         android:padding="25dp"/>
                     <Button
+                        android:id="@+id/button4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:onClick="showServicesStores"
                         android:text="Expand all"
                         android:textColor="@color/black"
                         android:background="#00000000"

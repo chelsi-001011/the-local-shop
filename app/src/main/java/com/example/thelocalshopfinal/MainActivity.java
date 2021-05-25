@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.util.Pair;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -49,6 +50,38 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
     };
+
+    public void showMedicalStores(View view){
+        String value="Medical";
+        Intent intent = new Intent(getApplicationContext(),StoresScreen.class);
+        intent.putExtra("StoreType", value);
+        startActivity(intent);
+//      finish();
+    }
+
+    public void showGroceryStores(View view){
+        String value="Grocery";
+        Intent intent = new Intent(getApplicationContext(),StoresScreen.class);
+        intent.putExtra("StoreType", value);
+        startActivity(intent);
+//      finish();
+    }
+
+    public void showFoodStores(View view){
+        String value="Food";
+        Intent intent = new Intent(getApplicationContext(),StoresScreen.class);
+        intent.putExtra("StoreType", value);
+        startActivity(intent);
+//      finish();
+    }
+
+    public void showServicesStores(View view){
+        String value="Services";
+        Intent intent = new Intent(getApplicationContext(),StoresScreen.class);
+        intent.putExtra("StoreType", value);
+        startActivity(intent);
+//      finish();
+    }
 
     @Override
     public void onBackPressed(){

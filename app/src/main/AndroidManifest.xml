@@ -9,6 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TheLocalShopFinal">
+        <activity android:name=".StoresScreen"></activity>
         <activity
             android:name=".MapActivity"
             android:parentActivityName=".MainActivity" />
@@ -16,9 +17,7 @@
         <activity android:name=".Register_Store" />
         <activity android:name=".Login" />
         <activity android:name=".MainActivity" />
-
         <activity android:name=".EditDetails" />
-
         <activity android:name=".UserProfile" />
         <activity android:name=".Register">
             <intent-filter>
