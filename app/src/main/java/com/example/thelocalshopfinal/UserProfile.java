@@ -61,6 +61,7 @@ public class UserProfile extends AppCompatActivity {
                         nameTV.setText(task.getResult().getString("fName"));
                         emailTV.setText(task.getResult().getString("email"));
                         contactTV.setText(task.getResult().getString("phone"));
+                        addressTV.setText(task.getResult().getString("address"));
                         isStore=false;
                     }
                     else{
@@ -72,6 +73,7 @@ public class UserProfile extends AppCompatActivity {
                                         nameTV.setText(task.getResult().getString("StoreName"));
                                         emailTV.setText(task.getResult().getString("email"));
                                         contactTV.setText(task.getResult().getString("phone"));
+                                        addressTV.setVisibility(View.GONE);
                                         isStore=true;
                                     }
                                     else{
@@ -112,6 +114,7 @@ public class UserProfile extends AppCompatActivity {
                 Intent i =new Intent(UserProfile.this,EditDetails.class);
                 i.putExtra("isStore",isStore);
                 startActivity(i);
+                finish();
             }
         });
     }
