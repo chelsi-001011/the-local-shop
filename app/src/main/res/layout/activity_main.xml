@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gradientbg2"
+    android:background="@drawable/gradientbg4"
     tools:context=".MainActivity">
 
     <FrameLayout
@@ -15,9 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@id/bottom_nav">
-        <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            xmlns:tools="http://schemas.android.com/tools"
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             tools:context=".Home">
@@ -43,17 +41,16 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:padding="25dp"
                         android:text="Medical Stores"
-                        android:textColor="@color/white"
-                        android:textSize="30sp"
-                        android:padding="25dp"/>
+                        android:textSize="25sp" />
+
                     <Button
                         android:id="@+id/button1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:onClick="showMedicalStores"
                         android:text="Expand all"
-                        android:textColor="@color/white"
                         android:background="#00000000"
                         android:padding="30dp"
                         android:layout_alignParentBottom="true"/>
@@ -74,8 +71,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Grocery Stores"
-                        android:textSize="30sp"
-                        android:textColor="@color/white"
+                        android:textSize="25sp"
                         android:padding="25dp"/>
                     <Button
                         android:id="@+id/button2"
@@ -83,7 +79,6 @@
                         android:layout_height="wrap_content"
                         android:onClick="showGroceryStores"
                         android:text="Expand all"
-                        android:textColor="@color/white"
                         android:background="#00000000"
                         android:padding="30dp"
                         android:layout_alignParentBottom="true"/>
@@ -100,20 +95,19 @@
                     android:layout_height="150dp"
                     android:layout_marginTop="40dp"
                     android:background="@drawable/gradientbg3">
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:padding="25dp"
                         android:text="Food"
-                        android:textSize="30sp"
-                        android:textColor="@color/white"
-                        android:padding="25dp"/>
+                        android:textSize="25sp" />
                     <Button
                         android:id="@+id/button3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:onClick="showFoodStores"
                         android:text="Expand all"
-                        android:textColor="@color/white"
                         android:background="#00000000"
                         android:padding="30dp"
                         android:layout_alignParentBottom="true"/>
@@ -134,8 +128,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Services"
-                        android:textSize="30sp"
-                        android:textColor="@color/white"
+                        android:textSize="25sp"
                         android:padding="25dp"/>
                     <Button
                         android:id="@+id/button4"
@@ -143,7 +136,6 @@
                         android:layout_height="wrap_content"
                         android:onClick="showServicesStores"
                         android:text="Expand all"
-                        android:textColor="@color/white"
                         android:background="#00000000"
                         android:padding="30dp"
                         android:layout_alignParentBottom="true"/>

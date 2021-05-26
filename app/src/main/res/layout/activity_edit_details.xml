@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@drawable/gradientbg2"
+    android:background="@drawable/gradientbg4"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".EditDetails">
@@ -53,12 +53,12 @@
         android:layout_marginBottom="8dp"/>
 
     <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:id="@+id/ChangeButton"
+        android:layout_width="233dp"
+        android:layout_height="wrap_content"
         android:layout_below="@id/ChangeAddress"
-        android:background="@drawable/gradientbg3"
-        android:textColor="@color/white"
+        android:layout_marginTop="56dp"
+        android:background="@drawable/gradientbg2"
         android:text="Change"
-        android:textSize="20dp"/>
+        android:textSize="20dp" />
 </RelativeLayout>

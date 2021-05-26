@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/gradientbg4"
     android:padding="16dp"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
@@ -12,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:radius="100dp"
-        android:background="@drawable/layout_bg">
+        android:background="@drawable/gradientbg3">
 
         <TextView
             android:id="@+id/store_name"
