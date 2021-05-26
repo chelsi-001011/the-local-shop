@@ -111,7 +111,7 @@ public class UserProfile extends AppCompatActivity {
         @Override
         public void onClick(View view) {
             if(isStore){
-                Intent i =new Intent(UserProfile.this,StoresScreen.class);
+                Intent i =new Intent(UserProfile.this,StoreMainActivity.class);
                 startActivity(i);
                 finish();
 

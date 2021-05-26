@@ -57,7 +57,7 @@ public class EditDetails extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(isStore){
-                    Intent i =new Intent(EditDetails.this,StoresScreen.class);
+                    Intent i =new Intent(EditDetails.this,StoreMainActivity.class);
                     startActivity(i);
                     finish();
 

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.thelocalshopfinal">
+
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission. ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET"/>
@@ -13,6 +14,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TheLocalShopFinal">
+        <activity android:name=".LoginStore"></activity>
+        <activity android:name=".StoreMainActivity" />
         <activity android:name=".StoresScreen"></activity>
         <activity
             android:name=".MapActivity"
