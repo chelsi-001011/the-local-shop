@@ -32,6 +32,7 @@ public class UserProfile extends AppCompatActivity {
     TextView emailTV;
     TextView contactTV;
     TextView addressTV;
+    ImageView back;
     String Name="",pass,contact="",address="",email,currentuser;
     FirebaseAuth mAuth;
     boolean isStore=false;
@@ -40,11 +41,11 @@ public class UserProfile extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         sign_out = findViewById(R.id.log_out);
         nameTV = findViewById(R.id.name);
         emailTV = findViewById(R.id.email);
         contactTV=findViewById(R.id.contact);
+        back=findViewById(R.id.backfromprofile);
         addressTV=findViewById(R.id.address);
         Edit =findViewById(R.id.EditProfile);mAuth=FirebaseAuth.getInstance();
         FirebaseUser user=mAuth.getCurrentUser();
@@ -106,7 +107,24 @@ public class UserProfile extends AppCompatActivity {
                 signOut();
             }
         });
+    back.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            if(isStore){
+                Intent i =new Intent(UserProfile.this,StoresScreen.class);
+                startActivity(i);
+                finish();
 
+            }
+            else{
+                Intent i =new Intent(UserProfile.this,MainActivity.class);
+                startActivity(i);
+                finish();
+
+            }
+
+        }
+    });
 
 
         Edit.setOnClickListener(new View.OnClickListener() {

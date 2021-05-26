@@ -11,6 +11,7 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.thelocalshopfinal.R;
@@ -28,17 +29,18 @@ public class EditDetails extends AppCompatActivity {
     String username,Uid;
     FirebaseAuth mAuth;
     boolean isStore;
+    ImageView back;
     FirebaseFirestore db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_details);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         NameTF=findViewById(R.id.ChangeName);
         ContTF=findViewById(R.id.ChangeContact);
         AddTF=findViewById(R.id.ChangeAddress);
         AddTF.setVisibility(View.GONE);
         Modify=findViewById(R.id.ChangeButton);
+        back=findViewById(R.id.backfromprofile);
         mAuth=FirebaseAuth.getInstance();
         Intent intent=getIntent();
         isStore=intent.getBooleanExtra("isStore",false);
@@ -51,6 +53,24 @@ public class EditDetails extends AppCompatActivity {
         else{
             show_Details_Customer(user_id);
         }
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(isStore){
+                    Intent i =new Intent(EditDetails.this,StoresScreen.class);
+                    startActivity(i);
+                    finish();
+
+                }
+                else{
+                    Intent i =new Intent(EditDetails.this,MainActivity.class);
+                    startActivity(i);
+                    finish();
+
+                }
+
+            }
+        });
         Modify.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

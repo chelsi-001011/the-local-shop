@@ -22,11 +22,9 @@
         <activity android:name=".Login" />
         <activity android:name=".MainActivity" />
 
-        <activity android:name=".EditDetails"
-            android:parentActivityName=".MainActivity" />
+        <activity android:name=".EditDetails" />
 
-        <activity android:name=".UserProfile"
-            android:parentActivityName=".MainActivity"/>
+        <activity android:name=".UserProfile"/>
         <activity android:name=".Register">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
