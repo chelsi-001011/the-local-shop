@@ -26,7 +26,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.lang.reflect.Array;
 
-public class Login extends AppCompatActivity {
+public class LoginStore extends AppCompatActivity {
     EditText mFullName, mEmail, mPassword, mPhone;
     Button mLoginBtn;
     TextView mSignUpBtn,mForgotPassword;
@@ -34,7 +34,7 @@ public class Login extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_login_store);
 
         mEmail = findViewById(R.id.emailAddress);
         mPassword = findViewById(R.id.password);
@@ -69,10 +69,11 @@ public class Login extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()) {
-                            Toast.makeText(Login.this, "Logged In Successfully", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+
+                            Toast.makeText(LoginStore.this, "Logged In Successfully", Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(getApplicationContext(), StoreMainActivity.class));
                         }else{
-                            Toast.makeText(Login.this,"ERROR! "+ task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginStore.this,"ERROR! "+ task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
@@ -103,12 +104,12 @@ public class Login extends AppCompatActivity {
                         fAuth.sendPasswordResetEmail(mail).addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
-                                Toast.makeText(Login.this, "Reset Link Sent to your Email", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(LoginStore.this, "Reset Link Sent to your Email", Toast.LENGTH_SHORT).show();
                             }
                         }).addOnFailureListener(new OnFailureListener() {
                             @Override
                             public void onFailure(@NonNull Exception e) {
-                                Toast.makeText(Login.this, "Reset Link is not sent Email. "+ e.getMessage(), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(LoginStore.this, "Reset Link is not sent Email. "+ e.getMessage(), Toast.LENGTH_SHORT).show();
                             }
                         });
 

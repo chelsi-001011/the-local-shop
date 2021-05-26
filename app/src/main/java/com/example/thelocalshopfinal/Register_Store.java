@@ -166,7 +166,7 @@ public class Register_Store extends AppCompatActivity {
 //                                    Log.d("TAG","onSuccess: user profile is created for "+ userID);
                                 }
                             });
-                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                            startActivity(new Intent(getApplicationContext(), StoreMainActivity.class));
                         } else {
                             Toast.makeText(Register_Store.this, "ERROR! " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                         }
@@ -178,7 +178,7 @@ public class Register_Store extends AppCompatActivity {
         mLoginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), Login.class));
+                startActivity(new Intent(getApplicationContext(), LoginStore.class));
             }
         });
     }

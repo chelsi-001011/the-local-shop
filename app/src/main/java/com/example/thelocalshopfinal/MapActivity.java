@@ -140,7 +140,6 @@ public class MapActivity extends AppCompatActivity implements
                     .accuracyAlpha(.6f)
                     .pulseEnabled(true)
                     .pulseMaxRadius(100f)
-                    .accuracyColor(Color.RED)
                     .build();
 
             // Get an instance of the component
