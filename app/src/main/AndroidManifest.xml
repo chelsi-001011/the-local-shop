@@ -4,7 +4,8 @@
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission. ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -15,6 +16,7 @@
         android:theme="@style/Theme.TheLocalShopFinal">
         <activity android:name=".LoginStore"></activity>
         <activity android:name=".StoreMainActivity" />
+        <activity android:name=".StoresScreen"></activity>
         <activity
             android:name=".MapActivity"
             android:parentActivityName=".MainActivity" />
@@ -22,8 +24,10 @@
         <activity android:name=".Register_Store" />
         <activity android:name=".Login" />
         <activity android:name=".MainActivity" />
-        <activity android:name=".EditDetails" />
-        <activity android:name=".UserProfile" />
+        <activity android:name=".EditDetails"
+            android:parentActivityName=".MainActivity" />
+        <activity android:name=".UserProfile"
+            android:parentActivityName=".MainActivity"/>
         <activity android:name=".Register">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
