@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/wallpaper"
+    android:background="@drawable/gradientbg1"
     tools:context=".Login">
 
     <TextView
@@ -81,6 +81,8 @@
         android:id="@+id/logIn"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:background="@drawable/gradientbg2"
+        android:textColor="@color/white"
         android:text="Log In"
         android:layout_margin="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
