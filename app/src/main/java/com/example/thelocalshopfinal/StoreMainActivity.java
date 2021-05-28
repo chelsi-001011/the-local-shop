@@ -74,6 +74,7 @@ public class StoreMainActivity extends AppCompatActivity {
                     holder.delete.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
+                            productlist.removeItemDecorationAt(position);
                             fstore.collection("store").document(userID).collection("products").document(holder.productName.getText().toString()).delete()
                                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                                         @Override

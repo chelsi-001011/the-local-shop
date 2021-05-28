@@ -46,7 +46,8 @@ public class AddProduct extends AppCompatActivity {
 //                if (currentUser != null) {
                 userID = fAuth.getCurrentUser().getUid();
                 DocumentReference documentReference = FirebaseFirestore.getInstance().collection("store").document(userID).collection("products").document(productName.getText().toString());
-                    Map<String, Object> product = new HashMap<>();
+
+                Map<String, Object> product = new HashMap<>();
                     product.put("product_name", productName.getText().toString());
                     product.put("product_cost", productCost.getText().toString());
                     documentReference.set(product).addOnSuccessListener(new OnSuccessListener<Void>() {
