@@ -27,7 +27,7 @@
             >
             <ImageView
                 android:layout_width="110dp"
-                android:src="@mipmap/ic_launcher_round"
+                android:src="@drawable/ic_user"
                 android:scaleType="centerCrop"
                 android:layout_height="110dp"
                 android:layout_marginBottom="5dp"
