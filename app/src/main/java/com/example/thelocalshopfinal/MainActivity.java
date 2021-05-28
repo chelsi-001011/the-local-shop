@@ -41,6 +41,9 @@ public class MainActivity extends AppCompatActivity {
                  case R.id.nav_profile:
                      startActivity(new Intent(MainActivity.this, UserProfile.class));
                      break;
+                case R.id.nav_cart:
+                    startActivity(new Intent(MainActivity.this, TimeLineCustomer.class));
+                    break;
                 default:
                     break;
                 // case R.id.nav_cart:

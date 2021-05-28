@@ -99,7 +99,7 @@ public class StoreMainActivity extends AppCompatActivity {
                     startActivity(new Intent(StoreMainActivity.this, StoreMainActivity.class));
                     break;
                 case R.id.nav_cart:
-                    startActivity(new Intent(StoreMainActivity.this, StoreMainActivity.class));
+                    startActivity(new Intent(StoreMainActivity.this, TimeLineStore.class));
                     break;
                 case R.id.nav_profile:
                     startActivity(new Intent(StoreMainActivity.this, UserProfile.class));
