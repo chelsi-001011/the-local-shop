@@ -1,11 +1,5 @@
 package com.example.thelocalshopfinal;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -18,12 +12,17 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.Looper;
 import android.provider.Settings;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
@@ -133,8 +132,8 @@ public class StoresScreen extends AppCompatActivity {
         public StoresViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            store_name=itemView.findViewById(R.id.store_name);
-            store_address=itemView.findViewById(R.id.store_address);
+            store_name=itemView.findViewById(R.id.product_name);
+            store_address=itemView.findViewById(R.id.product_cost);
             store_contact=itemView.findViewById(R.id.store_contact);
         }
     }
