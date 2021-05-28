@@ -17,10 +17,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 
@@ -70,19 +72,24 @@ public class StoreMainActivity extends AppCompatActivity {
                 protected void onBindViewHolder(@NonNull ProductsViewHolder holder, int position, @NonNull ProductsModel model) {
                     holder.productName.setText(model.getProductName());
                     holder.productCost.setText(model.getProductCost());
-                    holder.delete.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            productlist.removeItemDecorationAt(position);
-                            fstore.collection("store").document(userID).collection("products").document(holder.productName.getText().toString()).delete()
-                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                        @Override
-                                        public void onSuccess(Void aVoid) {
-                                            Log.d("TAG", "Product successfully deleted!");
-                                        }
-                                    });
-                        }
-                    });
+//                    holder.delete.setOnClickListener(new View.OnClickListener() {
+//                        @Override
+//                        public void onClick(View v) {
+//                           DocumentReference documentReference=  fstore.collection("store").document(userID).collection("products").document(model.getProductName());
+//
+//                                    documentReference.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+//                                        @Override
+//                                        public void onSuccess(Void aVoid) {
+//                                            Log.d("TAG", "Product successfully deleted!");
+//                                        }
+//                                    }).addOnFailureListener(new OnFailureListener() {
+//                                        @Override
+//                                        public void onFailure(@NonNull Exception e) {
+//                                            startActivity(new Intent(getApplicationContext(), StoreMainActivity.class));
+//                                        }
+//                                    });
+//                        }
+//                    });
                 }
             };
             productlist.setHasFixedSize(true);
@@ -129,6 +136,13 @@ public class StoreMainActivity extends AppCompatActivity {
             delete = itemView.findViewById(R.id.button);
             productName = itemView.findViewById(R.id.product_name);
             productCost = itemView.findViewById(R.id.product_cost);
+
+//            delete.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    Log.d("TAG","Clicked Delete "+ productName.getText().toString());
+//                }
+//            });
         }
     }
 

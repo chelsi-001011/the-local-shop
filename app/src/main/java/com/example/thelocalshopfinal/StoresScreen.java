@@ -16,6 +16,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -100,8 +101,17 @@ public class StoresScreen extends AppCompatActivity {
                 startPoint.setLongitude(model.getLongitude());
 
                 Location endPoint=new Location("locationA");
-                endPoint.setLatitude(lati);
-                endPoint.setLongitude(longi);
+                if(lati != null){
+                    endPoint.setLatitude(lati);
+                }else{
+                    endPoint.setLatitude(28.6139391);
+                }
+
+                if(longi !=null) {
+                    endPoint.setLongitude(longi);
+                }else{
+                    endPoint.setLongitude(77.2068325);
+                }
 
                 double distance=startPoint.distanceTo(endPoint);
                 distance/=1000.0;
@@ -129,6 +139,7 @@ public class StoresScreen extends AppCompatActivity {
         private TextView store_name;
         private TextView store_address;
         private TextView store_contact;
+        private Button showproduct;
 
         public StoresViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -136,6 +147,14 @@ public class StoresScreen extends AppCompatActivity {
             store_name=itemView.findViewById(R.id.store_name);
             store_address=itemView.findViewById(R.id.store_cost);
             store_contact=itemView.findViewById(R.id.store_contact);
+            showproduct = itemView.findViewById(R.id.buttonStore);
+
+            showproduct.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    startActivity(new Intent(getApplicationContext(), CustomerProducts.class));
+                }
+            });
         }
     }
 

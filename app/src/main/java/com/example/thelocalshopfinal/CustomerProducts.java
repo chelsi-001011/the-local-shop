@@ -39,14 +39,13 @@ public class CustomerProducts extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Bundle extras = getIntent().getExtras();
-        String StrName = "";
+        String StrName ="";
         if (extras != null) {
-            StrName = extras.getString("StrName");
+            StrName = extras.getString("StoreName");
             //The key argument here must match that used in the other activity
         }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_products);
-
         firebaseFirestore = FirebaseFirestore.getInstance();
         customerProducts=findViewById(R.id.customerProducts);
 
@@ -59,12 +58,13 @@ public class CustomerProducts extends AppCompatActivity {
                 if (task.isSuccessful()) {
                     for (QueryDocumentSnapshot document : task.getResult()) {
                         storeId[0] =document.getId();
+                        Log.d("TAG",storeId[0]);
                     }
                 }
             }
         });
 
-        Query query = firebaseFirestore.collection("store").document(storeId[0]).collection("products");
+        Query query = firebaseFirestore.collection("store").document("6KKwBh1vdycQmXjNOBIAyrt31il1").collection("products");
         FirestoreRecyclerOptions<CustomerProductsModel> options=new FirestoreRecyclerOptions.Builder<CustomerProductsModel>()
                 .setQuery(query, CustomerProductsModel.class)
                 .build();

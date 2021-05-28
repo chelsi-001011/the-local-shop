@@ -4,7 +4,10 @@ public class StoresModel {
     private String StoreName, category, email, phone;
     private Double latitude, longitude;
 
-    private StoresModel(){}
+    private StoresModel(){
+        latitude=28.6139391;
+        longitude=77.2068325;
+    }
 
     private StoresModel(String storeName, String category, String email, String phone, Double latitude, Double longitude) {
         StoreName = storeName;
