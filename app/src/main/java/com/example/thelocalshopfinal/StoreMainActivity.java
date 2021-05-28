@@ -1,10 +1,5 @@
 package com.example.thelocalshopfinal;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -15,11 +10,15 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -99,7 +98,7 @@ public class StoreMainActivity extends AppCompatActivity {
                     startActivity(new Intent(StoreMainActivity.this, StoreMainActivity.class));
                     break;
                 case R.id.nav_cart:
-                    startActivity(new Intent(StoreMainActivity.this, StoreMainActivity.class));
+                    startActivity(new Intent(StoreMainActivity.this, TimeLineStore.class));
                     break;
                 case R.id.nav_profile:
                     startActivity(new Intent(StoreMainActivity.this, UserProfile.class));

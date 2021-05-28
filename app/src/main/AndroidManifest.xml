@@ -27,6 +27,8 @@
         <activity android:name=".Login" />
         <activity android:name=".MainActivity" />
         <activity android:name=".EditDetails" />
+        <activity android:name=".TimeLineCustomer" />
+        <activity android:name=".TimeLineStore" />
         <activity android:name=".UserProfile" />
         <activity android:name=".Register">
             <intent-filter>
