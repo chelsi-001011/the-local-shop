@@ -11,12 +11,12 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         android:layout_width="match_parent"
-        android:layout_height="250dp"
+        android:layout_height="120dp"
         android:radius="100dp"
         android:background="@drawable/gradientbg3">
 
         <TextView
-            android:id="@+id/store_name"
+            android:id="@+id/product_name"
             android:layout_marginTop="16dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -25,32 +25,13 @@
             android:padding="10dp" />
 
         <TextView
-            android:id="@+id/store_cost"
+            android:id="@+id/product_cost"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="TextView"
-            android:textSize="20sp"
-            android:padding="10dp"
-            android:layout_below="@id/store_name"/>
-
-        <TextView
-            android:id="@+id/store_contact"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="TextView"
-            android:layout_below="@id/store_cost"
+            android:layout_below="@id/product_name"
             android:textSize="20sp"
             android:padding="10dp"/>
-
-        <Button
-            android:id="@+id/buttonStore"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginRight="24dp"
-            android:padding="10dp"
-            android:text="Products" />
 
     </RelativeLayout>
 

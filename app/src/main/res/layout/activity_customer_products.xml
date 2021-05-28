@@ -4,11 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gradientbg4"
-    tools:context=".StoresScreen">
+    tools:context=".CustomerProducts">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/stores"
+        android:id="@+id/customerProducts"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginStart="1dp"

@@ -14,7 +14,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TheLocalShopFinal">
-        <activity android:name=".AddProduct"></activity>
+        <activity android:name=".CustomerProducts"></activity>
+        <activity android:name=".AddProduct" />
         <activity android:name=".LoginStore" />
         <activity android:name=".StoreMainActivity" />
         <activity android:name=".StoresScreen" />
@@ -26,6 +27,8 @@
         <activity android:name=".Login" />
         <activity android:name=".MainActivity" />
         <activity android:name=".EditDetails" />
+        <activity android:name=".TimeLineCustomer" />
+        <activity android:name=".TimeLineStore" />
         <activity android:name=".UserProfile" />
         <activity android:name=".Register">
             <intent-filter>
