@@ -43,6 +43,7 @@
                         android:layout_height="wrap_content"
                         android:padding="25dp"
                         android:text="Medical Stores"
+                        android:textStyle="italic"
                         android:textSize="25sp" />
 
                     <Button
@@ -72,6 +73,7 @@
                         android:layout_height="wrap_content"
                         android:text="Grocery Stores"
                         android:textSize="25sp"
+                        android:textStyle="italic"
                         android:padding="25dp"/>
                     <Button
                         android:id="@+id/button2"
@@ -101,6 +103,7 @@
                         android:layout_height="wrap_content"
                         android:padding="25dp"
                         android:text="Food"
+                        android:textStyle="italic"
                         android:textSize="25sp" />
                     <Button
                         android:id="@+id/button3"
@@ -128,6 +131,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Services"
+                        android:textStyle="italic"
                         android:textSize="25sp"
                         android:padding="25dp"/>
                     <Button
