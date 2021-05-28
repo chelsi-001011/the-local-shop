@@ -12,6 +12,7 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.Looper;
 import android.provider.Settings;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -132,8 +133,8 @@ public class StoresScreen extends AppCompatActivity {
         public StoresViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            store_name=itemView.findViewById(R.id.product_name);
-            store_address=itemView.findViewById(R.id.product_cost);
+            store_name=itemView.findViewById(R.id.store_name);
+            store_address=itemView.findViewById(R.id.store_cost);
             store_contact=itemView.findViewById(R.id.store_contact);
         }
     }
