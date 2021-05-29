@@ -70,8 +70,9 @@ public class StoreMainActivity extends AppCompatActivity {
 
                 @Override
                 protected void onBindViewHolder(@NonNull ProductsViewHolder holder, int position, @NonNull ProductsModel model) {
-                    holder.productName.setText(model.getProductName());
-                    holder.productCost.setText(model.getProductCost());
+                    holder.productName.setText(model.getProduct_name());
+                    holder.productCost.setText(model.getProduct_cost());
+                    Log.d("TAG ",model.getProduct_name());
 //                    holder.delete.setOnClickListener(new View.OnClickListener() {
 //                        @Override
 //                        public void onClick(View v) {
