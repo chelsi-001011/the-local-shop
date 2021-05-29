@@ -21,6 +21,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="TextView"
+            android:textColor="@color/black"
             android:textSize="20sp"
             android:padding="10dp" />
 
@@ -29,6 +30,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="TextView"
+            android:textColor="@color/black"
             android:textSize="20sp"
             android:padding="10dp"
             android:layout_below="@id/store_name"/>
@@ -38,6 +40,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="TextView"
+            android:textColor="@color/black"
             android:layout_below="@id/store_cost"
             android:textSize="20sp"
             android:padding="10dp"/>

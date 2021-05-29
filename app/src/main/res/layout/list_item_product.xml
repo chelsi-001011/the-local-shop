@@ -15,26 +15,27 @@
         android:radius="100dp"
         android:background="@drawable/gradientbg3">
 
+
         <TextView
             android:id="@+id/product_name"
-            android:layout_marginTop="16dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:padding="10dp"
             android:text="TextView"
             android:textColor="@color/black"
-            android:textSize="20sp"
-            android:padding="10dp" />
+            android:textSize="20sp" />
 
         <TextView
             android:id="@+id/product_cost"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@id/product_name"
+            android:layout_marginTop="106dp"
+            android:padding="10dp"
             android:text="TextView"
             android:textColor="@color/black"
-            android:textSize="20sp"
-            android:padding="10dp"
-            android:layout_below="@id/product_name"/>
-
+            android:textSize="20sp" />
 
         <Button
             android:id="@+id/button"

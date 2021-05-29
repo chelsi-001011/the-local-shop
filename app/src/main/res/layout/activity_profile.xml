@@ -7,15 +7,15 @@
     android:background="@drawable/gradientbg4"
     android:layout_height="match_parent"
     tools:context=".UserProfile">
+
     <ImageView
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="15dp"
-        android:src="@drawable/ic_back"
-        android:layout_alignParentLeft="true"
         android:id="@+id/backfromprofile"
-        />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/ic_back" />
 
     <TextView
         android:id="@+id/name"
