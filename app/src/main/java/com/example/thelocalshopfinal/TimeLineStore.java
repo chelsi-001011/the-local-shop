@@ -3,6 +3,7 @@ package com.example.thelocalshopfinal;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -31,7 +32,9 @@ public class TimeLineStore extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.timeline);
-        BottomNavigationView bottomNav = findViewById(R.id.bottom_nav);
+        BottomNavigationView bottomNav = findViewById(R.id.bottom_nav_store);
+        BottomNavigationView bottomNavE = findViewById(R.id.bottom_nav_cus);
+        bottomNavE.setVisibility(View.GONE);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
 
         recyclerView = findViewById(R.id.rview_for_timeline);
@@ -71,16 +74,13 @@ public class TimeLineStore extends AppCompatActivity {
             int id = menuItem.getItemId();
             switch (id){
                 case R.id.nav_home:
-                    startActivity(new Intent(TimeLineStore.this, MainActivity.class));
+                    startActivity(new Intent(TimeLineStore.this, StoreMainActivity.class));
                     break;
-                case R.id.nav_map:
-                    startActivity(new Intent(TimeLineStore.this, MapActivity.class));
+                case R.id.nav_cart:
+                    startActivity(new Intent(TimeLineStore.this, TimeLineStore.class));
                     break;
                 case R.id.nav_profile:
                     startActivity(new Intent(TimeLineStore.this, UserProfile.class));
-                    break;
-                case R.id.nav_cart:
-                    startActivity(new Intent(TimeLineStore.this, TimeLineCustomer.class));
                     break;
                 default:
                     break;

@@ -39,7 +39,9 @@ public class TimeLineCustomer extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.timeline);
-        BottomNavigationView bottomNav = findViewById(R.id.bottom_nav);
+        BottomNavigationView bottomNav = findViewById(R.id.bottom_nav_cus);
+        BottomNavigationView bottomNavE = findViewById(R.id.bottom_nav_store);
+        bottomNavE.setVisibility(View.GONE);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
 
         recyclerView = findViewById(R.id.rview_for_timeline);
