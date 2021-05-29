@@ -20,6 +20,8 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -69,8 +71,27 @@ public class Login extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()) {
-                            Toast.makeText(Login.this, "Logged In Successfully", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                            Toast.makeText(Login.this, "Logged In Successfully", Toast.LENGTH_SHORT).show();FirebaseFirestore rootRef = FirebaseFirestore.getInstance();
+                            DocumentReference docIdRef = rootRef.collection("customer").document(FirebaseAuth.getInstance().getCurrentUser().getUid());
+                            docIdRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                                @Override
+                                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                    if (task.isSuccessful()) {
+                                        DocumentSnapshot document = task.getResult();
+                                        if (document.exists()) {
+                                            Intent intent=new Intent(Login.this,MainActivity.class);
+                                            startActivity(intent);
+                                            finish();
+                                        } else {
+                                            Intent intent=new Intent(Login.this,StoreMainActivity.class);
+                                            startActivity(intent);
+                                            finish();
+                                        }
+                                    } else {
+                                        Toast.makeText(Login.this, "Error", Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            });
                         }else{
                             Toast.makeText(Login.this,"ERROR! "+ task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                         }
