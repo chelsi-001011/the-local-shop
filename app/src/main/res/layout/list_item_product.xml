@@ -22,11 +22,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:padding="10dp"
-<<<<<<< HEAD
-            android:text="TextView"
-=======
             android:text="product name"
->>>>>>> cb72ca140d6c032a778f535188bf6de756e7a762
             android:textColor="@color/black"
             android:textSize="20sp" />
 
@@ -35,19 +31,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/product_name"
-<<<<<<< HEAD
-            android:layout_marginTop="106dp"
-            android:padding="10dp"
-            android:text="TextView"
-            android:textColor="@color/black"
-            android:textSize="20sp" />
-=======
             android:padding="10dp"
             android:text="product cost"
             android:textColor="@color/black"
             android:textSize="20sp" />
 
->>>>>>> cb72ca140d6c032a778f535188bf6de756e7a762
 
         <Button
             android:id="@+id/button"
