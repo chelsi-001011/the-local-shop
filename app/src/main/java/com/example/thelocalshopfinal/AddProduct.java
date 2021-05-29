@@ -50,6 +50,7 @@ public class AddProduct extends AppCompatActivity {
                 Map<String, Object> product = new HashMap<>();
                     product.put("product_name", productName.getText().toString());
                     product.put("product_cost", productCost.getText().toString());
+//                    Log.d("TAG ",productName.getText().toString());
                     documentReference.set(product).addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void aVoid) {

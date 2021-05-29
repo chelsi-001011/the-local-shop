@@ -1,7 +1,9 @@
 package com.example.thelocalshopfinal;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
@@ -17,6 +19,7 @@ import com.example.thelocalshopfinal.R;
 import com.example.thelocalshopfinal.TimelineRestStruct;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -36,6 +39,8 @@ public class TimeLineCustomer extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.timeline);
+        BottomNavigationView bottomNav = findViewById(R.id.bottom_nav);
+        bottomNav.setOnNavigationItemSelectedListener(navListener);
 
         recyclerView = findViewById(R.id.rview_for_timeline);
         recyclerView.setHasFixedSize(true);
@@ -68,4 +73,31 @@ public class TimeLineCustomer extends AppCompatActivity {
 
 
     }
+    private BottomNavigationView.OnNavigationItemSelectedListener navListener =new BottomNavigationView.OnNavigationItemSelectedListener() {
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+            int id = menuItem.getItemId();
+            switch (id){
+                case R.id.nav_home:
+                    startActivity(new Intent(TimeLineCustomer.this, MainActivity.class));
+                    break;
+                case R.id.nav_map:
+                    startActivity(new Intent(TimeLineCustomer.this, MapActivity.class));
+                    break;
+                case R.id.nav_profile:
+                    startActivity(new Intent(TimeLineCustomer.this, UserProfile.class));
+                    break;
+                case R.id.nav_cart:
+                    startActivity(new Intent(TimeLineCustomer.this, TimeLineCustomer.class));
+                    break;
+                default:
+                    break;
+                // case R.id.nav_cart:
+                //     break;
+
+            }
+            return true;
+        }
+    };
+
 }
