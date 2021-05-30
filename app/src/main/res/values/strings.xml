@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">The Local Shop Final</string>
+    <string name="app_name">Local Shop</string>
 
     <string name="mapbox_access_token">pk.eyJ1IjoiY2hlbHNpLTAwMTAxMSIsImEiOiJja291N3FhOHQwZndiMnBrN24zc29wM21rIn0.51mQdjwyMYix5NaiEY6bZA</string>
     <!--Basic user location permission toasts-->
