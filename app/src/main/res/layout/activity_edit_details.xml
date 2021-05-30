@@ -26,6 +26,7 @@
         android:layout_marginRight="16dp"
         android:layout_marginBottom="8dp"
         android:hint="Name"
+        android:textColor="@color/black"
         android:inputType="text"
         android:textSize="20dp" />
 
@@ -36,6 +37,7 @@
         android:layout_below="@+id/ChangeName"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="35dp"
+        android:textColor="@color/black"
         android:layout_marginRight="16dp"
         android:layout_marginBottom="8dp"
         android:hint="Contact"
@@ -48,6 +50,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/ChangeContact"
         android:layout_marginLeft="16dp"
+        android:textColor="@color/black"
         android:layout_marginTop="35dp"
         android:layout_marginRight="16dp"
         android:layout_marginBottom="8dp"
