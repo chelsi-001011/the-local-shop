@@ -90,7 +90,7 @@
         android:fontFamily="@font/amaranth"
         android:text="The Local Shop"
         android:textColor="@android:color/holo_blue_dark"
-        android:textSize="60sp"
+        android:textSize="50sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.515"
