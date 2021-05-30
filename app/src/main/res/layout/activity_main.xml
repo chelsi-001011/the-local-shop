@@ -60,7 +60,7 @@
                     <ImageView
                         android:layout_width="150dp"
                         android:layout_height="150dp"
-                        android:src="@drawable/ic_baseline_health_and_safety_24"
+                        android:src="@drawable/med_1"
                         android:layout_alignParentRight="true"/>
 
                 </RelativeLayout>
@@ -91,7 +91,7 @@
                     <ImageView
                         android:layout_width="150dp"
                         android:layout_height="150dp"
-                        android:src="@drawable/ic_baseline_local_grocery_store_24"
+                        android:src="@drawable/grocery"
                         android:layout_alignParentRight="true"/>
 
                 </RelativeLayout>
@@ -123,7 +123,7 @@
                     <ImageView
                         android:layout_width="150dp"
                         android:layout_height="150dp"
-                        android:src="@drawable/ic_baseline_fastfood_24"
+                        android:src="@drawable/food"
                         android:layout_alignParentRight="true"/>
 
                 </RelativeLayout>
@@ -154,7 +154,7 @@
                     <ImageView
                         android:layout_width="150dp"
                         android:layout_height="150dp"
-                        android:src="@drawable/ic_baseline_miscellaneous_services_24"
+                        android:src="@drawable/service_1"
                         android:layout_alignParentRight="true"/>
 
                 </RelativeLayout>
