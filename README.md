@@ -1,6 +1,10 @@
 # The Local Shop
 [Amazon HackOn](https://hackon-with-amazon.hackerearth.com/) Submission from Team - Vocal For Local.
 
+<p align="center">
+  <img width="200" height="200" src="Images/logoo.jpg">
+</p>
+
 ## Inctroduction
 Our objective was to help the people fetch their daily essentials from Local stores without having to step out. With this we aim at promoting the Local stores and help out people who have no one at home to get daily grocery and other stuff.
 Our method of implementation was building an app that will be handy for both the parties, the customer and the seller. We wanted to incorporate all the products and serivces that we require, and build something that fulfils the need of the people.
@@ -19,6 +23,11 @@ Our application is android based, it uses the following technologies and develop
 * Mapbox SDK for Android
 
 ## Snapshots
+The Customer Home Screen and the Map Screen with Store locations are shown below.
+<div align="center">
+  <img width="300" height="600" src="Images/customer_main.jpeg">
+  <img  width="300" height="600" src="Images/map.jpeg">
+</div>
 
 ## Setup
 CLoning the repository on our local system. Use the following command to clone the repository.
